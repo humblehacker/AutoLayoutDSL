@@ -1,36 +1,36 @@
-#
-# Be sure to run `pod spec lint NAME.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# To learn more about the attributes see http://docs.cocoapods.org/specification.html
-#
 Pod::Spec.new do |s|
   s.name         = "AutoLayoutDSL"
   s.version      = "0.1.0"
-  s.summary      = "A short description of AutoLayoutDSL."
+  s.summary      = "A straightforward DSL for specifying Cocoa Auto Layout constraints."
   s.description  = <<-DESC
-                    An optional longer description of AutoLayoutDSL
+                    AutoLayoutDSL allows you to turn this:
+                    
+                        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button2
+                                                                              attribute:NSLayoutAttributeLeft
+                                                                              relatedBy:NSLayoutRelationEqual
+                                                                                 toItem:_button1
+                                                                              attribute:NSLayoutAttributeRight
+                                                                             multiplier:1.0
+                                                                               constant:5.0]];
+                    
+                    into this:
+                    
+                        View(_button2).left() == View(_button1).right() + 5.0;
 
-                    * Markdown format.
-                    * Don't worry about the indent, we strip it!
+                    .
                    DESC
-  s.homepage     = "http://EXAMPLE/NAME"
-  s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage     = "http://github.com/humblehacker/AutoLayoutDSL"
   s.license      = 'MIT'
   s.author       = { "David Whetstone" => "david@humblehacker.com" }
-  s.source       = { :git => "http://EXAMPLE/NAME.git", :tag => s.version.to_s }
-
-  # s.platform     = :ios, '5.0'
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
+  s.source       = { :git => "https://github.com/humblehacker/AutoLayoutDSL.git", :tag => s.version.to_s }
+  s.platform     = :ios, '5.0'
+  s.ios.deployment_target = '5.0'
   s.requires_arc = true
-
   s.source_files = 'Classes'
-  s.resources = 'Assets'
-
-  s.ios.exclude_files = 'Classes/osx'
-  s.osx.exclude_files = 'Classes/ios'
-  # s.public_header_files = 'Classes/**/*.h'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
-  # s.dependency 'JSONKit', '~> 1.4'
+  s.resources    = 'Assets'
+  s.dependency 'BlocksKit', '~> 1.8'
+  s.xcconfig = {
+    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
+    'CLANG_CXX_LIBRARY' => 'libc++'
+  }
 end

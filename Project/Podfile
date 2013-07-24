@@ -1,7 +1,9 @@
-podspec :path => ".."
+platform :ios, '6.0'
 
-target "Demo" do
+podspec :path => "../AutoLayoutDSL.podspec"
+xcodeproj 'AutoLayoutDSL.xcodeproj'
+
+target :AutoLayoutDSLTests, :exclusive => true do
+   pod 'Kiwi'
 end
 
-target "DemoTests" do
-end
