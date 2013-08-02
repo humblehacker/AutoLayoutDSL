@@ -219,6 +219,7 @@ my attention:
 - [KeepLayout](https://github.com/iMartinKiss/KeepLayout)
 - [FLKAutoLayout](https://github.com/dkduck/FLKAutoLayout)
 - [Masonry](https://github.com/cloudkite/Masonry)
+- [Parus](https://github.com/DAlOG/Parus)
 
 
 Installation
