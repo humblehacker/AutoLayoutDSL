@@ -31,7 +31,7 @@ void ConstraintGroup::operator =(VoidBlock block)
 
 NSString *ConstraintGroup::groupName()
 {
-    return [_groups reduce:nil withBlock:^id(NSString *groupName, NSString *groupItem)
+    return [_groups bk_reduce:nil withBlock:^id(NSString *groupName, NSString *groupItem)
     {
         return groupName ? [groupName stringByAppendingFormat:@".%@", groupItem] : groupItem;
     }];
