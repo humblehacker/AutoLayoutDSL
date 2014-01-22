@@ -1,0 +1,34 @@
+PODS:
+  - BlocksKit (2.0.0):
+    - BlocksKit/All
+  - BlocksKit/All (2.0.0):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.0.0)
+  - BlocksKit/DynamicDelegate (2.0.0):
+    - libffi
+  - BlocksKit/MessageUI (2.0.0):
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.0.0):
+    - BlocksKit/DynamicDelegate
+  - Kiwi (2.2.3):
+    - Kiwi/SenTestingKit
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/SenTestingKit (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - libffi (3.0.13)
+
+DEPENDENCIES:
+  - BlocksKit (~> 2.0)
+  - Kiwi
+
+SPEC CHECKSUMS:
+  BlocksKit: b29ee3f28ba06a09f5c64987314ce5b75b2c3962
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
+
+COCOAPODS: 0.29.0
