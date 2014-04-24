@@ -14,12 +14,14 @@
 
 - (UIView *)firstView
 {
-    return nil;
+    NSAssert([self.firstItem isKindOfClass:[UIView class]], @"firstItem is not a view");
+    return self.firstItem;
 }
 
 - (UIView *)secondView
 {
-    return nil;
+    NSAssert(!self.secondItem || [self.secondItem isKindOfClass:[UIView class]], @"secondItem is not a view");
+    return self.secondItem;
 }
 
 - (void)install
