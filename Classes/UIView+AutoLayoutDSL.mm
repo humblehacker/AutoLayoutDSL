@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 humblehacker.com. All rights reserved.
 //
 
+#import <set>
+#import <BlocksKit/UIView+BlocksKit.h>
 #import "UIView+AutoLayoutDSL.h"
 #import "NSObject+AutoLayoutDSL.h"
 #import "NSLayoutConstraint+AutoLayoutDSL.h"
-#import "NSArray+BlocksKit.h"
-#import <set>
 
 @implementation UIView (AutoLayoutDSL)
 
@@ -100,5 +100,18 @@
 
     return array;
 }
+
+#ifdef DEBUG
+
+- (void)logAmbiguities
+{
+    NSLog(@"%@: %@", self.layoutID, self.hasAmbiguousLayout ? @"Ambiguous" : @"Unambiguous");
+
+    [self bk_eachSubview:^(UIView *subview)
+    {
+        [subview logAmbiguities];
+    }];
+}
+#endif
 
 @end

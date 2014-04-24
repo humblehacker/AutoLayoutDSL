@@ -1,34 +1,33 @@
 PODS:
-  - BlocksKit (2.0.0):
+  - BlocksKit (2.2.2):
     - BlocksKit/All
-  - BlocksKit/All (2.0.0):
+  - BlocksKit/All (2.2.2):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
     - BlocksKit/MessageUI
     - BlocksKit/UIKit
-  - BlocksKit/Core (2.0.0)
-  - BlocksKit/DynamicDelegate (2.0.0):
-    - libffi
-  - BlocksKit/MessageUI (2.0.0):
+  - BlocksKit/Core (2.2.2)
+  - BlocksKit/DynamicDelegate (2.2.2)
+  - BlocksKit/MessageUI (2.2.2):
+    - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - BlocksKit/UIKit (2.0.0):
+  - BlocksKit/UIKit (2.2.2):
+    - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Kiwi (2.2.3):
+  - Kiwi (2.2.4):
     - Kiwi/SenTestingKit
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/SenTestingKit (2.2.3):
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/SenTestingKit (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - libffi (3.0.13)
 
 DEPENDENCIES:
   - BlocksKit (~> 2.0)
   - Kiwi
 
 SPEC CHECKSUMS:
-  BlocksKit: b29ee3f28ba06a09f5c64987314ce5b75b2c3962
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
+  BlocksKit: 125e4e69a62e3b85bacc5175737dae000b00b9fb
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1

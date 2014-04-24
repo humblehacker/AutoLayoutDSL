@@ -99,11 +99,38 @@ SPEC_BEGIN(ConstraintSpec)
            });
         });
 
-        it(@"must have an view on the opposite side", ^
+        describe(@"when installed", ^
+        {
+            __block NSLayoutConstraint *constraint;
+
+            beforeEach(^
+            {
+                BeginConstraints
+
+                constraint = View().minY() == View(v1).minY();
+                [constraint install];
+
+                EndConstraints;
+            });
+
+            it(@"should be installed to the explicit view's superview", ^
+            {
+                [[v1.superview.constraints.lastObject should] equal:constraint];
+            });
+
+            it(@"then removed, should be removed from the explicit view's superview", ^
+            {
+                [constraint remove];
+                [[v1.superview.constraints should] beEmpty];
+            });
+        });
+
+        it(@"must have a view or a constant on the opposite side", ^
         {
             BeginConstraints
 
             [[theBlock(^{ View(v1).midY() == nil; }) should] raise];
+            [[theBlock(^{ View(v1).width() == 50.0; }) shouldNot] raise];
 
             EndConstraints;
         });
@@ -195,23 +222,31 @@ SPEC_BEGIN(ConstraintSpec)
         describe(@"with a common parent", ^
         {
             __block UIView *superview;
+            __block NSLayoutConstraint *constraint;
 
             beforeAll(^
             {
                 superview = [UIView new];
                 [superview addSubview:v1];
                 [superview addSubview:v2];
+
+                BeginConstraints
+
+                constraint = View(v1).midX() == View(v2).midX();
+                [constraint install];
+
+                EndConstraints;
             });
 
             it(@"should be installed in the common parent view", ^
             {
-                BeginConstraints
+                [[superview.constraints.lastObject should] equal:constraint];
+            });
 
-                View(v1).midX() == View(v2).midX(), @"constraint1";
-
-                EndConstraints;
-
-                [[[superview.constraints.lastObject layoutID] should] equal:@"constraint1"];
+            it(@"when removed, should be removed from the common parent view", ^
+            {
+                [constraint remove];
+                [[superview.constraints should] beEmpty];
             });
         });
 

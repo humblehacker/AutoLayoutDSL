@@ -18,7 +18,10 @@ static void * const kLayoutIDKey;
 
 - (NSString *)layoutID
 {
-  return [self bk_associatedValueForKey:&kLayoutIDKey];
+    NSString *label = [self bk_associatedValueForKey:&kLayoutIDKey];
+    if (!label)
+        label = [NSString stringWithFormat:@"<%@:%tx>", NSStringFromClass([self class]), self];
+    return label;
 }
 
 @end

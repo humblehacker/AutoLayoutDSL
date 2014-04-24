@@ -18,4 +18,8 @@
 
 - (NSArray *)constraintsReferencingView:(UIView *)targetView;
 
+#ifdef DEBUG
+- (void)logAmbiguities;
+#endif
+
 @end
