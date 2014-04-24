@@ -16,4 +16,17 @@
 - (void)install;
 - (void)remove;
 
+- (NSString*)equationString;
+
 @end
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+NSString * NSStringFromNSLayoutAttribute(NSLayoutAttribute attribute);
+NSString * NSStringFromNSLayoutRelation(NSLayoutRelation relation);
+
+#if defined(__cplusplus)
+}
+#endif

@@ -76,9 +76,6 @@ private:
     NSString *viewStr() const;
 };
 
-NSString *stringFromAttribute(NSLayoutAttribute attribute);
-NSString *stringFromRelation(NSLayoutRelation relation);
-
 } // namespace AutoLayoutDSL
 
 #include "ConstraintBuilder.h"

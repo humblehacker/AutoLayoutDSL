@@ -10,6 +10,7 @@
 
 #import "Constants.h"
 #import "NSObject+AutoLayoutDSL.h"
+#import "NSLayoutConstraint+AutoLayoutDSL.h"
 
 namespace AutoLayoutDSL
 {
@@ -212,7 +213,7 @@ NSString *View::viewStr() const
 
 NSString *View::attributeStr() const
 {
-    return stringFromAttribute(_attribute);
+    return [NSString stringWithFormat:@".%@", NSStringFromNSLayoutAttribute(_attribute)];
 }
 
 NSString *View::offsetStr() const
@@ -226,41 +227,7 @@ NSString *View::offsetStr() const
 
 NSString *View::scaleStr() const
 {
-    return _scale > 1 ? [NSString stringWithFormat:@"%.1f*", _scale] : @"";
-}
-
-NSString *stringFromAttribute(NSLayoutAttribute attribute)
-{
-    NSString *attributeName;
-    switch (attribute)
-    {
-        case NSLayoutAttributeLeft: attributeName = @"left"; break;
-        case NSLayoutAttributeRight: attributeName = @"right"; break;
-        case NSLayoutAttributeTop: attributeName = @"top"; break;
-        case NSLayoutAttributeBottom: attributeName = @"bottom"; break;
-        case NSLayoutAttributeLeading: attributeName = @"leading"; break;
-        case NSLayoutAttributeTrailing: attributeName = @"trailing"; break;
-        case NSLayoutAttributeWidth: attributeName = @"width"; break;
-        case NSLayoutAttributeHeight: attributeName = @"height"; break;
-        case NSLayoutAttributeCenterX: attributeName = @"centerX"; break;
-        case NSLayoutAttributeCenterY: attributeName = @"centerY"; break;
-        case NSLayoutAttributeBaseline: attributeName = @"baseline"; break;
-        case NSLayoutAttributeNotAnAttribute:
-        default: attributeName = @"not-an-attribute"; break;
-    }
-
-    return [NSString stringWithFormat:@".%@", attributeName];
-}
-
-NSString *stringFromRelation(NSLayoutRelation relation)
-{
-    switch (relation)
-    {
-        case NSLayoutRelationLessThanOrEqual: return @"<=";
-        case NSLayoutRelationEqual: return @"==";
-        case NSLayoutRelationGreaterThanOrEqual: return @">=";
-        default: return @"not-a-relation";
-    }
+    return _scale > 1.0 ? [NSString stringWithFormat:@"%.1f*", _scale] : @"";
 }
 
 } // namespace AutoLayoutDSL
