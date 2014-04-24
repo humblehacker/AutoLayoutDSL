@@ -22,6 +22,7 @@ public:
     View(View const &rhs);
     View(UIView *view);
     View(View const &viewHolder, UIView *view);
+    void swap(View &view) throw();
 
     ConstraintBuilder operator == (const View &);
     ConstraintBuilder operator == (float rhs);
@@ -63,6 +64,11 @@ public:
     View & baseline();
 
     friend class ConstraintBuilder;
+
+private:
+    // Private to prevent accidental use in constraint declaration.
+    // Must use operator ==() instead.
+    View & operator =(View rhs);
 
 private:
     __strong UIView *_view;

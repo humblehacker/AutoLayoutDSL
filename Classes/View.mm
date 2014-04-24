@@ -5,10 +5,8 @@
 //  Copyright 2013 David Whetstone. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <algorithm>
 #import "View.h"
-
-#import "Constants.h"
 #import "NSObject+AutoLayoutDSL.h"
 #import "NSLayoutConstraint+AutoLayoutDSL.h"
 
@@ -31,6 +29,20 @@ View::View(UIView *view) : _attribute(NSLayoutAttributeNotAnAttribute), _view(vi
 View::View(View const &viewHolder, UIView *view)
     : _attribute(viewHolder._attribute), _view(view), _scale(viewHolder._scale), _offset(viewHolder._offset)
 {
+}
+
+View &View::operator = (View rhs)
+{
+    rhs.swap(*this);
+    return *this;
+}
+
+void View::swap(View &view) throw()
+{
+    std::swap(_view, view._view);
+    std::swap(_attribute, view._attribute);
+    std::swap(_scale, view._scale);
+    std::swap(_offset, view._offset);
 }
 
 ConstraintBuilder View::operator == (const View &rhs)
