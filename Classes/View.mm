@@ -50,7 +50,7 @@ ConstraintBuilder View::operator == (const View &rhs)
     return ConstraintBuilder(*this, NSLayoutRelationEqual, rhs);
 }
 
-ConstraintBuilder View::operator == (float rhs)
+ConstraintBuilder View::operator == (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationEqual, View() + rhs);
 }
@@ -60,7 +60,7 @@ ConstraintBuilder View::operator <= (const View &rhs)
     return ConstraintBuilder(*this, NSLayoutRelationLessThanOrEqual, rhs);
 }
 
-ConstraintBuilder View::operator <= (float rhs)
+ConstraintBuilder View::operator <= (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationLessThanOrEqual, View() + rhs);
 }
@@ -70,44 +70,44 @@ ConstraintBuilder View::operator >= (const View &rhs)
     return ConstraintBuilder(*this, NSLayoutRelationGreaterThanOrEqual, rhs);
 }
 
-ConstraintBuilder View::operator >= (float rhs)
+ConstraintBuilder View::operator >= (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationGreaterThanOrEqual, View() + rhs);
 }
 
-View & View::operator *(float value)
+View & View::operator *(CGFloat value)
 {
     _scale *= value;
     return *this;
 }
 
-View & operator *(float value, View &rhs)
+View & operator *(CGFloat value, View &rhs)
 {
     return rhs.operator*(value);
 }
 
-View & View::operator /(float value)
+View & View::operator /(CGFloat value)
 {
-    return operator*(1.0/value);
+    return operator*(1.0f/value);
 }
 
-View & View::operator +(float value)
+View & View::operator +(CGFloat value)
 {
     _offset += value;
     return *this;
 }
 
-View & operator +(float value, View &rhs)
+View & operator +(CGFloat value, View &rhs)
 {
     return rhs.operator+(value);
 }
 
-View & View::operator -(float value)
+View & View::operator -(CGFloat value)
 {
     return operator+(-value);
 }
 
-View & operator -(float value, View &rhs)
+View & operator -(CGFloat value, View &rhs)
 {
     return rhs.operator-(value);
 }

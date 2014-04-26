@@ -90,7 +90,7 @@
     {
         for (NSLayoutConstraint *constraint in view.constraints)
         {
-            if (![constraint.class isEqual:[NSLayoutConstraint class]])
+            if (![constraint isMemberOfClass:[NSLayoutConstraint class]])
                 continue;
 
             if (targetView == constraint.firstView || view == constraint.secondView)
