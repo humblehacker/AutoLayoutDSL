@@ -101,6 +101,25 @@
     return array;
 }
 
+- (NSArray *)allConstraints
+{
+    NSMutableArray *allConstraints = [NSMutableArray new];
+    [self allConstraints:&allConstraints];
+    return [allConstraints copy];
+}
+
+- (void)allConstraints:(NSMutableArray **)allConstraints
+{
+    NSParameterAssert(allConstraints);
+
+    [*allConstraints addObjectsFromArray:self.constraints];
+
+    [self bk_eachSubview:^(UIView *subview)
+    {
+        [subview allConstraints:allConstraints];
+    }];
+}
+
 #ifdef DEBUG
 
 - (void)logAmbiguities

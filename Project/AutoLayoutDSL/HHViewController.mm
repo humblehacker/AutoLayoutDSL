@@ -107,16 +107,10 @@
 
 - (void)logAllConstraints
 {
-    void (^logConstraint)(NSLayoutConstraint *) = ^(NSLayoutConstraint *constraint)
+    [self.view.allConstraints bk_each:^(NSLayoutConstraint *constraint)
     {
         NSLog(@"%@", [constraint equationString]);
-    };
-
-    [self.view.constraints bk_each:logConstraint];
-    [self.contentView.constraints bk_each:logConstraint];
-    [self.blueView.constraints bk_each:logConstraint];
-    [self.greenView.constraints bk_each:logConstraint];
-    [self.textField.constraints bk_each:logConstraint];
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

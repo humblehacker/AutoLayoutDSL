@@ -18,6 +18,9 @@
 
 - (NSArray *)constraintsReferencingView:(UIView *)targetView;
 
+// Returns all constraints for this view and all subviews
+- (NSArray *)allConstraints;
+
 #ifdef DEBUG
 - (void)logAmbiguities;
 #endif
