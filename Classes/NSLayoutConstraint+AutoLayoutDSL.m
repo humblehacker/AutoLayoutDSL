@@ -66,7 +66,8 @@
     NSString *lhs = [NSString stringWithFormat:@"%@.%@", self.firstView.layoutID,
                               NSStringFromNSLayoutAttribute(self.firstAttribute)];
 
-    NSString *rhs;
+    NSString *rhs = @"";
+
     if (self.secondView)
     {
         rhs = [NSString stringWithFormat:@"%@.%@",
@@ -74,22 +75,26 @@
                                          NSStringFromNSLayoutAttribute(self.secondAttribute)];
         if (self.multiplier != 1.0)
             rhs = [NSString stringWithFormat:@"%@ * %.1f", rhs, self.multiplier];
-
-        if (self.constant != 0.0)
-        {
-            rhs = [NSString stringWithFormat:@"%@ %@ %.1f", rhs,
-                                             self.constant >= 0.0 ? @"+" : @"-",
-                                             fabs(self.constant)];
-        }
     }
 
-    NSString *comparator = NSStringFromNSLayoutRelation(self.relation);
+    if (!self.secondView)
+    {
+        NSString *sign = self.constant < 0 ? @"-" : @"";
+        rhs = [NSString stringWithFormat:@"%@%@%.1f", rhs, sign, fabs(self.constant)];
+    }
+    else if (self.constant != 0.0)
+    {
+        NSString *sign = self.constant < 0 ? @"-" : @"+";
+        rhs = [NSString stringWithFormat:@"%@ %@ %.1f", rhs, sign, fabs(self.constant)];
+    }
 
-    NSString *s = [NSString stringWithFormat:@"%@ %@ %@", lhs, comparator, rhs];
+    NSString *relation = NSStringFromNSLayoutRelation(self.relation);
+
+    NSString *s = [NSString stringWithFormat:@"%@ %@ %@", lhs, relation, rhs];
     if (self.priority != 1000.0)
         s = [s stringByAppendingFormat:@" ^ %.1f", self.priority];
-    if (self.layoutID.length > 0)
-        s = [s stringByAppendingFormat:@" ^ %@", self.layoutID];
+    if (self.hasLayoutID)
+        s = [s stringByAppendingFormat:@" ^ \"%@\"", self.layoutID];
     return s;
 }
 
