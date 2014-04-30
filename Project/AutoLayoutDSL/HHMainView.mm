@@ -6,12 +6,12 @@
 //
 
 #import "AutoLayoutDSL.h"
-#import "KeyboardProxyView.h"
+#import "HHKeyboardProxyView.h"
 #import "HHMainView.h"
 
 
 @interface HHMainView ()
-@property (nonatomic, weak) KeyboardProxyView *keyboardProxyView;
+@property (nonatomic, weak) HHKeyboardProxyView *keyboardProxyView;
 @property (nonatomic, weak) UIView *contentView;
 @end
 
@@ -42,7 +42,7 @@
 
 - (void)addKeyboardProxyView
 {
-    KeyboardProxyView *view = [[KeyboardProxyView alloc] init];
+    HHKeyboardProxyView *view = [[HHKeyboardProxyView alloc] init];
     view.layoutID = @"kbProxyView";
 
     [self addSubview:view];

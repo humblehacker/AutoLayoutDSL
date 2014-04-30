@@ -1,21 +1,21 @@
 //
-//  KeyboardProxyView
+//  HHKeyboardProxyView
 //
 //  Created by David Whetstone on 2014.04.20.
 //  Copyright 2014 David Whetstone. All rights reserved.
 //
 
 #import "AutoLayoutDSL.h"
-#import "KeyboardProxyView.h"
+#import "HHKeyboardProxyView.h"
 
 
-@interface KeyboardProxyView ()
+@interface HHKeyboardProxyView ()
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property (nonatomic, strong) id keyboardWillShowObserver;
 @property (nonatomic, strong) id keyboardWillHideObserver;
 @end
 
-@implementation KeyboardProxyView
+@implementation HHKeyboardProxyView
 
 - (void)dealloc
 {

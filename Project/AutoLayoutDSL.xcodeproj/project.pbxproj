@@ -29,7 +29,7 @@
 		6318EF09179A37F9006B3EF3 /* ConstraintSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF08179A37F9006B3EF3 /* ConstraintSpec.mm */; };
 		6318EF0C179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF0B179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m */; };
 		6318EF0F179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF0E179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm */; };
-		634F3AD71908BE1500E1D017 /* KeyboardProxyView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 634F3AD61908BE1500E1D017 /* KeyboardProxyView.mm */; };
+		634F3AD71908BE1500E1D017 /* HHKeyboardProxyView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */; };
 		63C6FC7317936AEC00D5F4B8 /* Constants.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC6C17936AEC00D5F4B8 /* Constants.mm */; };
 		63C6FC7417936AEC00D5F4B8 /* ConstraintBuilder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC6E17936AEC00D5F4B8 /* ConstraintBuilder.mm */; };
 		63C6FC7517936AEC00D5F4B8 /* NSObject+AutoLayoutDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC7017936AEC00D5F4B8 /* NSObject+AutoLayoutDSL.m */; };
@@ -81,8 +81,8 @@
 		6318EF0B179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+AutoLayoutDSL.m"; sourceTree = "<group>"; };
 		6318EF0D179B86F1006B3EF3 /* UIView+AutoLayoutDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayoutDSL.h"; sourceTree = "<group>"; };
 		6318EF0E179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.mmm; path = "UIView+AutoLayoutDSL.mm"; sourceTree = "<group>"; };
-		634F3AD51908BE1500E1D017 /* KeyboardProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardProxyView.h; sourceTree = "<group>"; };
-		634F3AD61908BE1500E1D017 /* KeyboardProxyView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyboardProxyView.mm; sourceTree = "<group>"; };
+		634F3AD51908BE1500E1D017 /* HHKeyboardProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHKeyboardProxyView.h; sourceTree = "<group>"; };
+		634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHKeyboardProxyView.mm; sourceTree = "<group>"; };
 		63C6FC6A17936AEC00D5F4B8 /* AutoLayoutDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayoutDSL.h; sourceTree = "<group>"; };
 		63C6FC6B17936AEC00D5F4B8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		63C6FC6C17936AEC00D5F4B8 /* Constants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Constants.mm; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 		63C6FC6917936AEC00D5F4B8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				634F3AD51908BE1500E1D017 /* KeyboardProxyView.h */,
-				634F3AD61908BE1500E1D017 /* KeyboardProxyView.mm */,
+				634F3AD51908BE1500E1D017 /* HHKeyboardProxyView.h */,
+				634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */,
 				63C6FC6A17936AEC00D5F4B8 /* AutoLayoutDSL.h */,
 				63C6FC6B17936AEC00D5F4B8 /* Constants.h */,
 				63C6FC6C17936AEC00D5F4B8 /* Constants.mm */,
@@ -417,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				634F3AD71908BE1500E1D017 /* KeyboardProxyView.mm in Sources */,
+				634F3AD71908BE1500E1D017 /* HHKeyboardProxyView.mm in Sources */,
 				5AF0EE716A89D05C34C843DD /* main.m in Sources */,
 				5AF0E18D12BFE6A2D0253311 /* HHAppDelegate.m in Sources */,
 				5AF0EBC3F729C1E672B547F3 /* HHViewController.mm in Sources */,
