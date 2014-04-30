@@ -28,7 +28,7 @@ PODS:
 DEPENDENCIES:
   - BlocksKit (~> 2.0)
   - Kiwi
-  - libextobjc/EXTScope
+  - libextobjc/EXTScope (~> 0.4)
 
 SPEC CHECKSUMS:
   BlocksKit: 125e4e69a62e3b85bacc5175737dae000b00b9fb

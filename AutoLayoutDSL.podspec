@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AutoLayoutDSL"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "A straightforward DSL for specifying Cocoa Auto Layout constraints."
   s.description  = <<-DESC
                     AutoLayoutDSL allows you to turn this:
@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes'
   s.resources    = 'Assets'
   s.dependency 'BlocksKit', '~> 2.0'
+  s.dependency 'libextobjc/EXTScope', '~> 0.4'
   s.xcconfig = {
     'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
     'CLANG_CXX_LIBRARY' => 'libc++'

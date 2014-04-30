@@ -3,8 +3,6 @@ platform :ios, '6.0'
 podspec :path => "../AutoLayoutDSL.podspec"
 xcodeproj 'AutoLayoutDSL.xcodeproj'
 
-pod 'libextobjc/EXTScope'
-
 target :AutoLayoutDSLTests, :exclusive => true do
    pod 'Kiwi'
 end
