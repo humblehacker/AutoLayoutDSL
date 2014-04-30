@@ -25,24 +25,24 @@ public:
     void swap(View &view) throw();
 
     ConstraintBuilder operator == (const View &);
-    ConstraintBuilder operator == (float rhs);
+    ConstraintBuilder operator == (CGFloat rhs);
 
     ConstraintBuilder operator <= (const View &);
-    ConstraintBuilder operator <= (float rhs);
+    ConstraintBuilder operator <= (CGFloat rhs);
 
     ConstraintBuilder operator >= (const View &);
-    ConstraintBuilder operator >= (float rhs);
+    ConstraintBuilder operator >= (CGFloat rhs);
 
-    View & operator *(float value);
-    friend View & operator *(float value, View &rhs);
+    View & operator *(CGFloat value);
+    friend View & operator *(CGFloat value, View &rhs);
 
-    View & operator /(float value);
+    View & operator /(CGFloat value);
 
-    View & operator +(float value);
-    friend View & operator +(float value, View &rhs);
+    View & operator +(CGFloat value);
+    friend View & operator +(CGFloat value, View &rhs);
 
-    View & operator -(float value);
-    friend View & operator -(float value, View &rhs);
+    View & operator -(CGFloat value);
+    friend View & operator -(CGFloat value, View &rhs);
 
     View & left();
     View & centerX();
@@ -73,8 +73,8 @@ private:
 private:
     __strong UIView *_view;
     NSLayoutAttribute _attribute;
-    float _scale;
-    float _offset;
+    CGFloat _scale;
+    CGFloat _offset;
     NSString *str() const;
     NSString *offsetStr() const;
     NSString *scaleStr() const;

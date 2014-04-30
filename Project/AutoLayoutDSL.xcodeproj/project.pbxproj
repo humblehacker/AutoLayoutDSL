@@ -16,11 +16,12 @@
 		5AF0E798D62FB1098C5ADA25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E48230A1738E242B0596 /* UIKit.framework */; };
 		5AF0E7AB9CA11C995E8C9A43 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF0EC59982CD6C0373291C5 /* Default-568h@2x.png */; };
 		5AF0E81DB4A29119216E6A64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5AF0EC35564FE24A6D2240C9 /* InfoPlist.strings */; };
+		5AF0E8FB71E28B34CFC144F8 /* HHMainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */; };
 		5AF0E921179ACF8FBAF9DD6D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF0E7339C66E690C0C488F4 /* Default@2x.png */; };
 		5AF0E96F112D556DA778B05F /* UIViewSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E3698874C120F1C5DCA7 /* UIViewSpec.mm */; };
 		5AF0EA209F927618730D126B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E510B09F5B5F73DAAFB8 /* Foundation.framework */; };
 		5AF0EABF4F740E2662A5B977 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E726ECD4F908B9B09131 /* SenTestingKit.framework */; };
-		5AF0EBC3F729C1E672B547F3 /* HHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E1E04DE315318324F875 /* HHViewController.m */; };
+		5AF0EBC3F729C1E672B547F3 /* HHViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E1E04DE315318324F875 /* HHViewController.mm */; };
 		5AF0EBEB9B8B4C5B304CA221 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AF0EF0A537D7E00CFC01455 /* MainStoryboard_iPad.storyboard */; };
 		5AF0EC4EFF86D23154320221 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E48230A1738E242B0596 /* UIKit.framework */; };
 		5AF0ED5DDC7E94F76BDED4A9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF0E8579AEBB9DF2DC478D1 /* Default.png */; };
@@ -28,6 +29,7 @@
 		6318EF09179A37F9006B3EF3 /* ConstraintSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF08179A37F9006B3EF3 /* ConstraintSpec.mm */; };
 		6318EF0C179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF0B179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m */; };
 		6318EF0F179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6318EF0E179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm */; };
+		634F3AD71908BE1500E1D017 /* HHKeyboardProxyView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */; };
 		63C6FC7317936AEC00D5F4B8 /* Constants.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC6C17936AEC00D5F4B8 /* Constants.mm */; };
 		63C6FC7417936AEC00D5F4B8 /* ConstraintBuilder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC6E17936AEC00D5F4B8 /* ConstraintBuilder.mm */; };
 		63C6FC7517936AEC00D5F4B8 /* NSObject+AutoLayoutDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6FC7017936AEC00D5F4B8 /* NSObject+AutoLayoutDSL.m */; };
@@ -50,10 +52,11 @@
 		5AF0E0B23BF44F7363000CDF /* AutoLayoutDSL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AutoLayoutDSL-Info.plist"; sourceTree = "<group>"; };
 		5AF0E12B72FA3225A06679C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5AF0E1512933F6282E491438 /* HHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHAppDelegate.m; sourceTree = "<group>"; };
-		5AF0E1E04DE315318324F875 /* HHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHViewController.m; sourceTree = "<group>"; };
+		5AF0E1E04DE315318324F875 /* HHViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HHViewController.mm; sourceTree = "<group>"; };
 		5AF0E220EC3BD10F1E6E61CB /* AutoLayoutDSL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLayoutDSL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF0E24A1D29B9046A01CA47 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		5AF0E3698874C120F1C5DCA7 /* UIViewSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIViewSpec.mm; sourceTree = "<group>"; };
+		5AF0E3DABA607A9F2C21DFA7 /* HHMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHMainView.h; sourceTree = "<group>"; };
 		5AF0E48230A1738E242B0596 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5AF0E510B09F5B5F73DAAFB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5AF0E5E223F16B6FA578812F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		5AF0EA7E0540B3FE4BCE92FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5AF0EC59982CD6C0373291C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5AF0EC5A16B4B8AB7DA6D0AD /* AutoLayoutDSLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AutoLayoutDSLTests-Info.plist"; sourceTree = "<group>"; };
+		5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHMainView.mm; sourceTree = "<group>"; };
 		5AF0EE13C8B9F040B0AB2989 /* HHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHAppDelegate.h; sourceTree = "<group>"; };
 		5AF0EE42832070135C4BE33C /* AutoLayoutDSL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoLayoutDSL-Prefix.pch"; sourceTree = "<group>"; };
 		5AF0EF23DB4C94C1CD4A248E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		6318EF0B179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+AutoLayoutDSL.m"; sourceTree = "<group>"; };
 		6318EF0D179B86F1006B3EF3 /* UIView+AutoLayoutDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayoutDSL.h"; sourceTree = "<group>"; };
 		6318EF0E179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.mmm; path = "UIView+AutoLayoutDSL.mm"; sourceTree = "<group>"; };
+		634F3AD51908BE1500E1D017 /* HHKeyboardProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHKeyboardProxyView.h; sourceTree = "<group>"; };
+		634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHKeyboardProxyView.mm; sourceTree = "<group>"; };
 		63C6FC6A17936AEC00D5F4B8 /* AutoLayoutDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayoutDSL.h; sourceTree = "<group>"; };
 		63C6FC6B17936AEC00D5F4B8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		63C6FC6C17936AEC00D5F4B8 /* Constants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Constants.mm; sourceTree = "<group>"; };
@@ -153,7 +159,9 @@
 				5AF0ED69DE47DC34822BFD0F /* MainStoryboard_iPhone.storyboard */,
 				5AF0EF0A537D7E00CFC01455 /* MainStoryboard_iPad.storyboard */,
 				5AF0E8E85B2FB178D0697981 /* HHViewController.h */,
-				5AF0E1E04DE315318324F875 /* HHViewController.m */,
+				5AF0E1E04DE315318324F875 /* HHViewController.mm */,
+				5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */,
+				5AF0E3DABA607A9F2C21DFA7 /* HHMainView.h */,
 			);
 			path = AutoLayoutDSL;
 			sourceTree = "<group>";
@@ -202,6 +210,8 @@
 		63C6FC6917936AEC00D5F4B8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				634F3AD51908BE1500E1D017 /* HHKeyboardProxyView.h */,
+				634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */,
 				63C6FC6A17936AEC00D5F4B8 /* AutoLayoutDSL.h */,
 				63C6FC6B17936AEC00D5F4B8 /* Constants.h */,
 				63C6FC6C17936AEC00D5F4B8 /* Constants.mm */,
@@ -407,9 +417,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634F3AD71908BE1500E1D017 /* HHKeyboardProxyView.mm in Sources */,
 				5AF0EE716A89D05C34C843DD /* main.m in Sources */,
 				5AF0E18D12BFE6A2D0253311 /* HHAppDelegate.m in Sources */,
-				5AF0EBC3F729C1E672B547F3 /* HHViewController.m in Sources */,
+				5AF0EBC3F729C1E672B547F3 /* HHViewController.mm in Sources */,
 				63C6FC7317936AEC00D5F4B8 /* Constants.mm in Sources */,
 				63C6FC7417936AEC00D5F4B8 /* ConstraintBuilder.mm in Sources */,
 				63C6FC7517936AEC00D5F4B8 /* NSObject+AutoLayoutDSL.m in Sources */,
@@ -417,6 +428,7 @@
 				6318EF0C179B86BF006B3EF3 /* NSLayoutConstraint+AutoLayoutDSL.m in Sources */,
 				6318EF0F179B86F1006B3EF3 /* UIView+AutoLayoutDSL.mm in Sources */,
 				5AF0E4C023993E23333E9971 /* ConstraintGroup.mm in Sources */,
+				5AF0E8FB71E28B34CFC144F8 /* HHMainView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

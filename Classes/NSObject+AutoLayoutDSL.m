@@ -24,5 +24,10 @@ static void * const kLayoutIDKey;
     return label;
 }
 
+- (BOOL)hasLayoutID
+{
+    return [self bk_associatedValueForKey:&kLayoutIDKey] != nil;
+}
+
 @end
 
