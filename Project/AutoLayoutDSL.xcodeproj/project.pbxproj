@@ -501,10 +501,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -571,10 +573,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
