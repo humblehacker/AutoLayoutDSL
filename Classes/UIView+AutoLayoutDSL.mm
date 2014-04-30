@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 humblehacker.com. All rights reserved.
 //
 
+#import <set>
+#import <BlocksKit/UIView+BlocksKit.h>
 #import "UIView+AutoLayoutDSL.h"
 #import "NSObject+AutoLayoutDSL.h"
 #import "NSLayoutConstraint+AutoLayoutDSL.h"
-#import "NSArray+BlocksKit.h"
-#import <set>
 
 @implementation UIView (AutoLayoutDSL)
 
@@ -90,7 +90,7 @@
     {
         for (NSLayoutConstraint *constraint in view.constraints)
         {
-            if (![constraint.class isEqual:[NSLayoutConstraint class]])
+            if (![constraint isMemberOfClass:[NSLayoutConstraint class]])
                 continue;
 
             if (targetView == constraint.firstView || view == constraint.secondView)
@@ -100,5 +100,37 @@
 
     return array;
 }
+
+- (NSArray *)allConstraints
+{
+    NSMutableArray *allConstraints = [NSMutableArray new];
+    [self allConstraints:&allConstraints];
+    return [allConstraints copy];
+}
+
+- (void)allConstraints:(NSMutableArray **)allConstraints
+{
+    NSParameterAssert(allConstraints);
+
+    [*allConstraints addObjectsFromArray:self.constraints];
+
+    [self bk_eachSubview:^(UIView *subview)
+    {
+        [subview allConstraints:allConstraints];
+    }];
+}
+
+#ifdef DEBUG
+
+- (void)logAmbiguities
+{
+    NSLog(@"%@: %@", self.layoutID, self.hasAmbiguousLayout ? @"Ambiguous" : @"Unambiguous");
+
+    [self bk_eachSubview:^(UIView *subview)
+    {
+        [subview logAmbiguities];
+    }];
+}
+#endif
 
 @end

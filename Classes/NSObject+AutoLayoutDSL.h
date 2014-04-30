@@ -9,6 +9,7 @@
 
 - (void)setLayoutID:(NSString *)layoutID;
 - (NSString *)layoutID;
+- (BOOL)hasLayoutID;
 
 @end
 

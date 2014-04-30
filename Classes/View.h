@@ -22,26 +22,27 @@ public:
     View(View const &rhs);
     View(UIView *view);
     View(View const &viewHolder, UIView *view);
+    void swap(View &view) throw();
 
     ConstraintBuilder operator == (const View &);
-    ConstraintBuilder operator == (float rhs);
+    ConstraintBuilder operator == (CGFloat rhs);
 
     ConstraintBuilder operator <= (const View &);
-    ConstraintBuilder operator <= (float rhs);
+    ConstraintBuilder operator <= (CGFloat rhs);
 
     ConstraintBuilder operator >= (const View &);
-    ConstraintBuilder operator >= (float rhs);
+    ConstraintBuilder operator >= (CGFloat rhs);
 
-    View & operator *(float value);
-    friend View & operator *(float value, View &rhs);
+    View & operator *(CGFloat value);
+    friend View & operator *(CGFloat value, View &rhs);
 
-    View & operator /(float value);
+    View & operator /(CGFloat value);
 
-    View & operator +(float value);
-    friend View & operator +(float value, View &rhs);
+    View & operator +(CGFloat value);
+    friend View & operator +(CGFloat value, View &rhs);
 
-    View & operator -(float value);
-    friend View & operator -(float value, View &rhs);
+    View & operator -(CGFloat value);
+    friend View & operator -(CGFloat value, View &rhs);
 
     View & left();
     View & centerX();
@@ -65,19 +66,21 @@ public:
     friend class ConstraintBuilder;
 
 private:
+    // Private to prevent accidental use in constraint declaration.
+    // Must use operator ==() instead.
+    View & operator =(View rhs);
+
+private:
     __strong UIView *_view;
     NSLayoutAttribute _attribute;
-    float _scale;
-    float _offset;
+    CGFloat _scale;
+    CGFloat _offset;
     NSString *str() const;
     NSString *offsetStr() const;
     NSString *scaleStr() const;
     NSString *attributeStr() const;
     NSString *viewStr() const;
 };
-
-NSString *stringFromAttribute(NSLayoutAttribute attribute);
-NSString *stringFromRelation(NSLayoutRelation relation);
 
 } // namespace AutoLayoutDSL
 

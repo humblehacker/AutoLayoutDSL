@@ -141,7 +141,7 @@ NSString *ConstraintBuilder::str() const
 {
     return [NSString stringWithFormat:@"%@ %@ %@ (%.1f)",
                                       _firstView.str(),
-                                      stringFromRelation(_relation),
+                                      NSStringFromNSLayoutRelation(_relation),
                                       _secondView.str(),
                                       _priority];
 }

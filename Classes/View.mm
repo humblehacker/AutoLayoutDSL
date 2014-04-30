@@ -5,11 +5,10 @@
 //  Copyright 2013 David Whetstone. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <algorithm>
 #import "View.h"
-
-#import "Constants.h"
 #import "NSObject+AutoLayoutDSL.h"
+#import "NSLayoutConstraint+AutoLayoutDSL.h"
 
 namespace AutoLayoutDSL
 {
@@ -32,12 +31,26 @@ View::View(View const &viewHolder, UIView *view)
 {
 }
 
+View &View::operator = (View rhs)
+{
+    rhs.swap(*this);
+    return *this;
+}
+
+void View::swap(View &view) throw()
+{
+    std::swap(_view, view._view);
+    std::swap(_attribute, view._attribute);
+    std::swap(_scale, view._scale);
+    std::swap(_offset, view._offset);
+}
+
 ConstraintBuilder View::operator == (const View &rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationEqual, rhs);
 }
 
-ConstraintBuilder View::operator == (float rhs)
+ConstraintBuilder View::operator == (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationEqual, View() + rhs);
 }
@@ -47,7 +60,7 @@ ConstraintBuilder View::operator <= (const View &rhs)
     return ConstraintBuilder(*this, NSLayoutRelationLessThanOrEqual, rhs);
 }
 
-ConstraintBuilder View::operator <= (float rhs)
+ConstraintBuilder View::operator <= (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationLessThanOrEqual, View() + rhs);
 }
@@ -57,44 +70,44 @@ ConstraintBuilder View::operator >= (const View &rhs)
     return ConstraintBuilder(*this, NSLayoutRelationGreaterThanOrEqual, rhs);
 }
 
-ConstraintBuilder View::operator >= (float rhs)
+ConstraintBuilder View::operator >= (CGFloat rhs)
 {
     return ConstraintBuilder(*this, NSLayoutRelationGreaterThanOrEqual, View() + rhs);
 }
 
-View & View::operator *(float value)
+View & View::operator *(CGFloat value)
 {
     _scale *= value;
     return *this;
 }
 
-View & operator *(float value, View &rhs)
+View & operator *(CGFloat value, View &rhs)
 {
     return rhs.operator*(value);
 }
 
-View & View::operator /(float value)
+View & View::operator /(CGFloat value)
 {
-    return operator*(1.0/value);
+    return operator*(1.0f/value);
 }
 
-View & View::operator +(float value)
+View & View::operator +(CGFloat value)
 {
     _offset += value;
     return *this;
 }
 
-View & operator +(float value, View &rhs)
+View & operator +(CGFloat value, View &rhs)
 {
     return rhs.operator+(value);
 }
 
-View & View::operator -(float value)
+View & View::operator -(CGFloat value)
 {
     return operator+(-value);
 }
 
-View & operator -(float value, View &rhs)
+View & operator -(CGFloat value, View &rhs)
 {
     return rhs.operator-(value);
 }
@@ -212,7 +225,7 @@ NSString *View::viewStr() const
 
 NSString *View::attributeStr() const
 {
-    return stringFromAttribute(_attribute);
+    return [NSString stringWithFormat:@".%@", NSStringFromNSLayoutAttribute(_attribute)];
 }
 
 NSString *View::offsetStr() const
@@ -226,41 +239,7 @@ NSString *View::offsetStr() const
 
 NSString *View::scaleStr() const
 {
-    return _scale > 1 ? [NSString stringWithFormat:@"%.1f*", _scale] : @"";
-}
-
-NSString *stringFromAttribute(NSLayoutAttribute attribute)
-{
-    NSString *attributeName;
-    switch (attribute)
-    {
-        case NSLayoutAttributeLeft: attributeName = @"left"; break;
-        case NSLayoutAttributeRight: attributeName = @"right"; break;
-        case NSLayoutAttributeTop: attributeName = @"top"; break;
-        case NSLayoutAttributeBottom: attributeName = @"bottom"; break;
-        case NSLayoutAttributeLeading: attributeName = @"leading"; break;
-        case NSLayoutAttributeTrailing: attributeName = @"trailing"; break;
-        case NSLayoutAttributeWidth: attributeName = @"width"; break;
-        case NSLayoutAttributeHeight: attributeName = @"height"; break;
-        case NSLayoutAttributeCenterX: attributeName = @"centerX"; break;
-        case NSLayoutAttributeCenterY: attributeName = @"centerY"; break;
-        case NSLayoutAttributeBaseline: attributeName = @"baseline"; break;
-        case NSLayoutAttributeNotAnAttribute:
-        default: attributeName = @"not-an-attribute"; break;
-    }
-
-    return [NSString stringWithFormat:@".%@", attributeName];
-}
-
-NSString *stringFromRelation(NSLayoutRelation relation)
-{
-    switch (relation)
-    {
-        case NSLayoutRelationLessThanOrEqual: return @"<=";
-        case NSLayoutRelationEqual: return @"==";
-        case NSLayoutRelationGreaterThanOrEqual: return @">=";
-        default: return @"not-a-relation";
-    }
+    return _scale > 1.0 ? [NSString stringWithFormat:@"%.1f*", _scale] : @"";
 }
 
 } // namespace AutoLayoutDSL
