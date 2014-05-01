@@ -1,5 +1,9 @@
 # AutoLayoutDSL CHANGELOG
 
+## 0.2.1 2014.05.01
+
+- Moved HHMainView into Classes for pod distribution
+
 ## 0.2.0 2014.04.29
 
 - Compile-time check for accidental use of `operator=` when defining constraints

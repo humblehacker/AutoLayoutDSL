@@ -502,7 +502,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";
@@ -574,7 +574,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";

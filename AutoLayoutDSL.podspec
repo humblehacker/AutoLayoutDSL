@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AutoLayoutDSL"
-  s.version      = "0.2.0"
+  s.version      = "0.2.1"
   s.summary      = "A straightforward DSL for specifying Cocoa Auto Layout constraints."
   s.description  = <<-DESC
                     AutoLayoutDSL allows you to turn this:
