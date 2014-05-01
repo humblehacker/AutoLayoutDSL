@@ -160,8 +160,6 @@
 				5AF0EF0A537D7E00CFC01455 /* MainStoryboard_iPad.storyboard */,
 				5AF0E8E85B2FB178D0697981 /* HHViewController.h */,
 				5AF0E1E04DE315318324F875 /* HHViewController.mm */,
-				5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */,
-				5AF0E3DABA607A9F2C21DFA7 /* HHMainView.h */,
 			);
 			path = AutoLayoutDSL;
 			sourceTree = "<group>";
@@ -212,6 +210,8 @@
 			children = (
 				634F3AD51908BE1500E1D017 /* HHKeyboardProxyView.h */,
 				634F3AD61908BE1500E1D017 /* HHKeyboardProxyView.mm */,
+				5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */,
+				5AF0E3DABA607A9F2C21DFA7 /* HHMainView.h */,
 				63C6FC6A17936AEC00D5F4B8 /* AutoLayoutDSL.h */,
 				63C6FC6B17936AEC00D5F4B8 /* Constants.h */,
 				63C6FC6C17936AEC00D5F4B8 /* Constants.mm */,
