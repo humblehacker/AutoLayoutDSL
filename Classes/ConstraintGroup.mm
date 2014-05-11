@@ -1,9 +1,9 @@
 //
 //  ConstraintGroup
-//  Tout
+//  AutoLayoutDSL
 //
 //  Created by david on 7/21/13.
-//  Copyright (c) 2013 Tout Industries, Inc. All rights reserved.
+//  Copyright 2014 David Whetstone. All rights reserved.
 //
 
 #import "ConstraintGroup.h"

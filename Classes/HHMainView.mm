@@ -2,7 +2,7 @@
 //  HHMainView
 //
 //  Created by david on 4/24/14.
-//  Copyright (c) 2014 David Whetstone. All rights reserved.
+//  Copyright 2014 David Whetstone. All rights reserved.
 //
 
 #import "AutoLayoutDSL.h"

@@ -281,8 +281,9 @@
 		5AF0E890F829C553C6EE56AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HH;
 				LastTestingUpgradeCheck = 0510;
-				ORGANIZATIONNAME = humblehacker.com;
+				ORGANIZATIONNAME = "David Whetstone";
 			};
 			buildConfigurationList = 5AF0E1513D7257DC37DFFC70 /* Build configuration list for PBXProject "AutoLayoutDSL" */;
 			compatibilityVersion = "Xcode 3.2";

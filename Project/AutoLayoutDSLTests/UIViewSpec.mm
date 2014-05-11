@@ -3,7 +3,7 @@
 //  AutoLayoutDSL
 //
 //  Created by David Whetstone on 7/19/13.
-//  Copyright (c) 2013 humblehacker.com. All rights reserved.
+//  Copyright 2014 David Whetstone. All rights reserved.
 //
 
 #import "Kiwi.h"
