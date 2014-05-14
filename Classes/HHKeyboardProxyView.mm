@@ -5,6 +5,7 @@
 //  Copyright 2014 David Whetstone. All rights reserved.
 //
 
+#import <libextobjc/EXTScope.h>
 #import "AutoLayoutDSL.h"
 #import "UIView+AutoLayoutDSLSugar.h"
 #import "HHKeyboardProxyView.h"
