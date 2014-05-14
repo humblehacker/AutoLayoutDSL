@@ -6,6 +6,7 @@
 //
 
 #import "AutoLayoutDSL.h"
+#import "UIView+AutoLayoutDSLSugar.h"
 #import "HHKeyboardProxyView.h"
 #import "HHMainView.h"
 
@@ -30,7 +31,6 @@
     return self;
 }
 
-
 - (void)addContentView
 {
     UIView *contentView = [[UIView alloc] init];
@@ -53,10 +53,10 @@
 {
     BeginConstraints
 
-    View(self.contentView).top() == View().top();
-    View(self.contentView).left() == View().left();
-    View(self.contentView).right() == View().right();
-    View(self.contentView).bottom() == View(self.keyboardProxyView).top();
+    self.contentView.top == View().top;
+    self.contentView.left == View().left;
+    self.contentView.right == View().right;
+    self.contentView.bottom == self.keyboardProxyView.top;
 
     EndConstraints
 

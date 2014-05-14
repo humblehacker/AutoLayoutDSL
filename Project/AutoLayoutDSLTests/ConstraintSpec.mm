@@ -8,7 +8,7 @@
 
 #import "Kiwi.h"
 #import "AutoLayoutDSL.h"
-#import "NSObject+AutoLayoutDSL.h"
+#import "UIView+AutoLayoutDSLSugar.h"
 
 using namespace AutoLayoutDSL;
 
@@ -46,7 +46,9 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
+            /* Now a compile error
             [[theBlock(^{ View() == View(); }) should] raise];
+            */
 
             EndConstraints;
         });
@@ -76,11 +78,11 @@ SPEC_BEGIN(ConstraintSpec)
             {
                 BeginConstraints
 
-                [[theBlock(^{ View(v1).minY() == View().minY(); }) shouldNot] raise];
+                [[theBlock(^{ View(v1).top == View().top; }) shouldNot] raise];
 
                 [v1 removeFromSuperview];
 
-                [[theBlock(^{ View(v1).minY() == View().minY(); }) should] raise];
+                [[theBlock(^{ View(v1).top == View().top; }) should] raise];
 
                 EndConstraints;
             });
@@ -89,11 +91,11 @@ SPEC_BEGIN(ConstraintSpec)
             {
                 BeginConstraints
 
-                [[theBlock(^{ View().minY() == View(v1).minY(); }) shouldNot] raise];
+                [[theBlock(^{ View().top == View(v1).top; }) shouldNot] raise];
 
                 [v1 removeFromSuperview];
 
-                [[theBlock(^{ View().minY() == View(v1).minY(); }) should] raise];
+                [[theBlock(^{ View().top == View(v1).top; }) should] raise];
 
                 EndConstraints;
            });
@@ -107,7 +109,7 @@ SPEC_BEGIN(ConstraintSpec)
             {
                 BeginConstraints
 
-                constraint = View().minY() == View(v1).minY();
+                constraint = View().top == View(v1).top;
                 [constraint install];
 
                 EndConstraints;
@@ -129,8 +131,8 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
-            [[theBlock(^{ View(v1).midY() == nil; }) should] raise];
-            [[theBlock(^{ View(v1).width() == 50.0; }) shouldNot] raise];
+            [[theBlock(^{ View(v1).centerY == nil; }) should] raise];
+            [[theBlock(^{ View(v1).width == 50.0; }) shouldNot] raise];
 
             EndConstraints;
         });
@@ -141,7 +143,7 @@ SPEC_BEGIN(ConstraintSpec)
             {
                 BeginConstraints
 
-                NSLayoutConstraint *constraint = View(v1).midY() == View().minY();
+                NSLayoutConstraint *constraint = View(v1).centerY == View().top;
 
                 [[constraint.secondItem should] equal:v1.superview];
 
@@ -152,7 +154,7 @@ SPEC_BEGIN(ConstraintSpec)
             {
                 BeginConstraints
 
-                NSLayoutConstraint *constraint = View().midY() == View(v1).minY();
+                NSLayoutConstraint *constraint = View().centerY == View(v1).top;
 
                 [[constraint.firstItem should] equal:v1.superview];
 
@@ -176,7 +178,11 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
+                v2.left == v1.right;
+
+            /* Now a compile error
             [[theBlock(^{ View(v1) == View(v2); }) should] raise];
+            */
 
             EndConstraints;
         });
@@ -185,7 +191,7 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
-            [[theBlock(^{ View(v1).left() + 5 == View(v2).right() + 6; }) should] raise];
+            [[theBlock(^{ View(v1).left + 5 == View(v2).right + 6; }) should] raise];
 
             EndConstraints;
         });
@@ -194,7 +200,7 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
-            [[theBlock(^{ View(v1).left() * 5 == View(v2).right() * 6; }) should] raise];
+            [[theBlock(^{ View(v1).left * 5 == View(v2).right * 6; }) should] raise];
 
             EndConstraints;
         });
@@ -203,7 +209,7 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
-            [[theBlock(^{ View(v1).left() * 5 == View(v2).right() + 6; }) should] raise];
+            [[theBlock(^{ View(v1).left * 5 == View(v2).right + 6; }) should] raise];
 
             EndConstraints;
         });
@@ -212,8 +218,8 @@ SPEC_BEGIN(ConstraintSpec)
         {
             BeginConstraints
 
-            NSLayoutConstraint *constraint1 = View(v1).midX() == 2*View(v2).minX() + 5;
-            NSLayoutConstraint *constraint2 = View(v2).minX() * 2 + 5 == View(v1).midX();
+            NSLayoutConstraint *constraint1 = View(v1).centerX == 2.f*View(v2).left + 5;
+            NSLayoutConstraint *constraint2 = View(v2).left * 2 + 5 == View(v1).centerX;
             [[constraint1 should] equal:constraint2];
 
             EndConstraints;
@@ -232,7 +238,7 @@ SPEC_BEGIN(ConstraintSpec)
 
                 BeginConstraints
 
-                constraint = View(v1).midX() == View(v2).midX();
+                constraint = View(v1).centerX == View(v2).centerX;
                 [constraint install];
 
                 EndConstraints;
@@ -252,175 +258,185 @@ SPEC_BEGIN(ConstraintSpec)
 
         describe(@"when converted to an NSLayoutConstraint object", ^
         {
-            it(@"should map minX() to NSLayoutAttributeLeft", ^
+            it(@"should map left to NSLayoutAttributeLeft", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX();
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeLeft)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeLeft)];
             });
 
-            it(@"should map left() to NSLayoutAttributeLeft", ^
+            it(@"should map left to NSLayoutAttributeLeft", ^
             {
-                NSLayoutConstraint *constraint = View(v1).left() == View(v2).left();
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeLeft)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeLeft)];
             });
 
-            it(@"should map midX() to NSLayoutAttributeCenterX", ^
+            it(@"should map centerX to NSLayoutAttributeCenterX", ^
             {
-                NSLayoutConstraint *constraint = View(v1).midX() == View(v2).midX();
+                NSLayoutConstraint *constraint = View(v1).centerX == View(v2).centerX;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeCenterX)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeCenterX)];
             });
 
-            it(@"should map centerX() to NSLayoutAttributeCenterX", ^
+            it(@"should map centerX to NSLayoutAttributeCenterX", ^
             {
-                NSLayoutConstraint *constraint = View(v1).centerX() == View(v2).centerX();
+                NSLayoutConstraint *constraint = View(v1).centerX == View(v2).centerX;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeCenterX)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeCenterX)];
             });
 
-            it(@"should map maxX() to NSLayoutAttributeRight", ^
+            it(@"should map right to NSLayoutAttributeRight", ^
             {
-                NSLayoutConstraint *constraint = View(v1).maxX() == View(v2).maxX();
+                NSLayoutConstraint *constraint = View(v1).right == View(v2).right;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeRight)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeRight)];
             });
 
-            it(@"should map right() to NSLayoutAttributeRight", ^
+            it(@"should map right to NSLayoutAttributeRight", ^
             {
-                NSLayoutConstraint *constraint = View(v1).right() == View(v2).right();
+                NSLayoutConstraint *constraint = View(v1).right == View(v2).right;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeRight)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeRight)];
             });
 
-            it(@"should map minY() to NSLayoutAttributeTop", ^
+            it(@"should map top to NSLayoutAttributeTop", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minY() == View(v2).minY();
+                NSLayoutConstraint *constraint = View(v1).top == View(v2).top;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeTop)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeTop)];
             });
 
-            it(@"should map top() to NSLayoutAttributeTop", ^
+            it(@"should map top to NSLayoutAttributeTop", ^
             {
-                NSLayoutConstraint *constraint = View(v1).top() == View(v2).top();
+                NSLayoutConstraint *constraint = View(v1).top == View(v2).top;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeTop)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeTop)];
             });
 
-            it(@"should map midY() to NSLayoutAttributeCenterY", ^
+            it(@"should map centerY to NSLayoutAttributeCenterY", ^
             {
-                NSLayoutConstraint *constraint = View(v1).midY() == View(v2).midY();
+                NSLayoutConstraint *constraint = View(v1).centerY == View(v2).centerY;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeCenterY)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeCenterY)];
             });
 
-            it(@"should map centerY() to NSLayoutAttributeCenterY", ^
+            it(@"should map centerY to NSLayoutAttributeCenterY", ^
             {
-                NSLayoutConstraint *constraint = View(v1).centerY() == View(v2).centerY();
+                NSLayoutConstraint *constraint = View(v1).centerY == View(v2).centerY;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeCenterY)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeCenterY)];
             });
 
-            it(@"should map maxY() to NSLayoutAttributeBottom", ^
+            it(@"should map bottom to NSLayoutAttributeBottom", ^
             {
-                NSLayoutConstraint *constraint = View(v1).maxY() == View(v2).maxY();
+                NSLayoutConstraint *constraint = View(v1).bottom == View(v2).bottom;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeBottom)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeBottom)];
             });
 
-            it(@"should map bottom() to NSLayoutAttributeBottom", ^
+            it(@"should map bottom to NSLayoutAttributeBottom", ^
             {
-                NSLayoutConstraint *constraint = View(v1).bottom() == View(v2).bottom();
+                NSLayoutConstraint *constraint = View(v1).bottom == View(v2).bottom;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeBottom)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeBottom)];
             });
 
-            it(@"should map leading() to NSLayoutAttributeLeading", ^
+            it(@"should map leading to NSLayoutAttributeLeading", ^
             {
-                NSLayoutConstraint *constraint = View(v1).leading() == View(v2).leading();
+                NSLayoutConstraint *constraint = View(v1).leading == View(v2).leading;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeLeading)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeLeading)];
             });
 
-            it(@"should map trailing() to NSLayoutAttributeTrailing", ^
+            it(@"should map trailing to NSLayoutAttributeTrailing", ^
             {
-                NSLayoutConstraint *constraint = View(v1).trailing() == View(v2).trailing();
+                NSLayoutConstraint *constraint = View(v1).trailing == View(v2).trailing;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeTrailing)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeTrailing)];
             });
 
-            it(@"should map baseline() to NSLayoutAttributeBaseline", ^
+            it(@"should map baseline to NSLayoutAttributeBaseline", ^
             {
-                NSLayoutConstraint *constraint = View(v1).baseline() == View(v2).baseline();
+                NSLayoutConstraint *constraint = View(v1).baseline == View(v2).baseline;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeBaseline)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeBaseline)];
             });
 
-            it(@"should map baseline() to NSLayoutAttributeBaseline", ^
+            it(@"should map baseline to NSLayoutAttributeBaseline", ^
             {
-                NSLayoutConstraint *constraint = View(v1).width() == View(v2).width();
+                NSLayoutConstraint *constraint = View(v1).width == View(v2).width;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeWidth)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeWidth)];
             });
 
-            it(@"should map baseline() to NSLayoutAttributeBaseline", ^
+            it(@"should map baseline to NSLayoutAttributeBaseline", ^
             {
-                NSLayoutConstraint *constraint = View(v1).height() == View(v2).height();
+                NSLayoutConstraint *constraint = View(v1).height == View(v2).height;
                 [[theValue(constraint.firstAttribute) should] equal:theValue(NSLayoutAttributeHeight)];
                 [[theValue(constraint.secondAttribute) should] equal:theValue(NSLayoutAttributeHeight)];
             });
 
             it(@"should map priority when specified", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX() ^ 500.0;
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left ^ 500.0;
                 [[theValue(constraint.priority) should] equal:theValue(500.0)];
             });
 
             it(@"should map layoutID when specified", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX() ^ @"constraintLayoutID";
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left ^ @"constraintLayoutID";
                 [[constraint.layoutID should] equal:@"constraintLayoutID"];
             });
 
             it(@"should map both priority and layoutID when specified together", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX() ^ @"constraintLayoutID" ^ 500.0;
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left ^ @"constraintLayoutID" ^ 500.0;
                 [[constraint.layoutID should] equal:@"constraintLayoutID"];
                 [[theValue(constraint.priority) should] equal:theValue(500.0)];
             });
 
             it(@"should map both priority and layoutID when specified together, regardless of order", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX() ^ 500.0 ^ @"constraintLayoutID";
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left ^ 500.0 ^ @"constraintLayoutID";
                 [[constraint.layoutID should] equal:@"constraintLayoutID"];
                 [[theValue(constraint.priority) should] equal:theValue(500.0)];
             });
 
             it(@"should map both priority and layoutID when specified together, even when constants and multipliers are present", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX() * 5.0 + 4.0 ^ 500.0 ^ @"constraintLayoutID";
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left * 5.0 + 4.0 ^ 500.0 ^ @"constraintLayoutID";
                 [[constraint.layoutID should] equal:@"constraintLayoutID"];
                 [[theValue(constraint.priority) should] equal:theValue(500.0)];
             });
 
             it(@"should map an == relation to NSLayoutRelationEqual", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() == View(v2).minX();
+                NSLayoutConstraint *constraint = View(v1).left == View(v2).left;
                 [[theValue(constraint.relation) should] equal:theValue(NSLayoutRelationEqual)];
             });
 
             it(@"should map a <= relation to NSLayoutRelationLessThanOrEqual", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() <= View(v2).minX();
+                NSLayoutConstraint *constraint = View(v1).left <= View(v2).left;
                 [[theValue(constraint.relation) should] equal:theValue(NSLayoutRelationLessThanOrEqual)];
             });
 
             it(@"should map a >= relation to NSLayoutRelationGreaterThanOrEqual", ^
             {
-                NSLayoutConstraint *constraint = View(v1).minX() >= View(v2).minX();
+                NSLayoutConstraint *constraint = View(v1).left >= View(v2).left;
                 [[theValue(constraint.relation) should] equal:theValue(NSLayoutRelationGreaterThanOrEqual)];
             });
+        });
+
+        it(@"should not be able to relate a location to a size constraint", ^
+        {
+            // Each of the following should generate a compile error
+            // Uncomment to test
+            // View(v1).width == View().left;
+            // View(v1).top == View().width;
+            // View(v1).height == View().top;
+            // View(v1).top == View().height;
         });
     });
 

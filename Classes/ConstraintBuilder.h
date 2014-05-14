@@ -17,7 +17,7 @@ namespace AutoLayoutDSL
 class ConstraintBuilder
 {
 public:
-    ConstraintBuilder(View const & lhs, NSLayoutRelation relation, View const & rhs);
+    ConstraintBuilder(ViewWithAttribute const &lhs, NSLayoutRelation relation, ViewWithAttribute const &rhs);
     ~ConstraintBuilder();
 
     operator NSLayoutConstraint *();
@@ -31,8 +31,8 @@ public:
     NSString *str() const;
 
 private:
-    View _firstView;
-    View _secondView;
+    ViewWithAttribute _firstView;
+    ViewWithAttribute _secondView;
     NSLayoutRelation _relation;
     UILayoutPriority _priority;
     NSLayoutConstraint *_layoutConstraint;

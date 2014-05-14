@@ -8,6 +8,7 @@
 
 #import "HHViewController.h"
 #import "AutoLayoutDSL.h"
+#import "UIView+AutoLayoutDSLSugar.h"
 #import "NSArray+BlocksKit.h"
 #import "HHMainView.h"
 
@@ -82,20 +83,20 @@
     //self.view removeA
     BeginConstraints
 
-    View(self.textField).top() == View().top() + StandardMargin;
-    View(self.textField).left() == View().left() + StandardMargin;
-    View(self.textField).right() == View().right() - StandardMargin;
-    View(self.textField).height() == StandardControlHeight;
+    self.textField.top == View().top + StandardMargin;
+    self.textField.left == View().left + StandardMargin;
+    self.textField.right == View().right - StandardMargin;
+    self.textField.height == StandardControlHeight;
 
-    View(self.blueView).top() == View(self.textField).bottom() + StandardVerticalGap;
-    View(self.blueView).left() == View().left() + StandardMargin;
-    View(self.blueView).width() == View().width() / 2.0f - StandardHorizontalGap / 2.0f - StandardMargin;
-    View(self.blueView).bottom() == View().bottom() - StandardMargin;
+    self.blueView.top == self.textField.bottom + StandardVerticalGap;
+    self.blueView.left == View().left + StandardMargin;
+    self.blueView.width == View().width / 2.0f - StandardHorizontalGap / 2.0f - StandardMargin;
+    self.blueView.bottom == View().bottom - StandardMargin;
 
-    View(self.greenView).top() == View(self.blueView).top();
-    View(self.greenView).left() == View(self.blueView).right() + StandardHorizontalGap;
-    View(self.greenView).right() == View().right() - StandardMargin;
-    View(self.greenView).bottom() == View(self.blueView).bottom();
+    self.greenView.top == self.blueView.top;
+    self.greenView.left == self.blueView.right + StandardHorizontalGap;
+    self.greenView.right == View().right - StandardMargin;
+    self.greenView.bottom == self.blueView.bottom;
 
     EndConstraints
 
