@@ -1,5 +1,12 @@
 # AutoLayoutDSL CHANGELOG
 
+## 1.0.0 2014.05.13
+
+- Make relating size and location constraints a compile-time error
+- Eliminate need to specify `()` on constraint attributes (e.g. `View(_someView).left` instead
+  of `View(_someView).left()`.
+- Eliminate need to wrap `UIView`s in `View()` (e.g. `_someView.left` instead of `View(_someView).left`.
+
 ## 0.2.1 2014.05.01
 
 - Moved HHMainView into Classes for pod distribution

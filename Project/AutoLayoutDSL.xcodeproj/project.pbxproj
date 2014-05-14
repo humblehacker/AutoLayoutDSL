@@ -57,6 +57,7 @@
 		5AF0E12B72FA3225A06679C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5AF0E1512933F6282E491438 /* HHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHAppDelegate.m; sourceTree = "<group>"; };
 		5AF0E16941D343D4C51A24B7 /* ViewWithLocationAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWithLocationAttribute.h; sourceTree = "<group>"; };
+		5AF0E1B02798DF6271A68377 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5AF0E1E04DE315318324F875 /* HHViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HHViewController.mm; sourceTree = "<group>"; };
 		5AF0E220EC3BD10F1E6E61CB /* AutoLayoutDSL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLayoutDSL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF0E24A1D29B9046A01CA47 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
@@ -79,9 +80,11 @@
 		5AF0E9E935E1DE40D795DE70 /* ViewWithLocationAttribute.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewWithLocationAttribute.mm; sourceTree = "<group>"; };
 		5AF0EA7E0540B3FE4BCE92FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5AF0EC320776F9854DA9BA16 /* ViewWithAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWithAttribute.h; sourceTree = "<group>"; };
+		5AF0EC3A886D45897BECA6C2 /* AutoLayoutDSL.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = AutoLayoutDSL.podspec; path = ../AutoLayoutDSL.podspec; sourceTree = "<group>"; };
 		5AF0EC59982CD6C0373291C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5AF0EC5A16B4B8AB7DA6D0AD /* AutoLayoutDSLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AutoLayoutDSLTests-Info.plist"; sourceTree = "<group>"; };
 		5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHMainView.mm; sourceTree = "<group>"; };
+		5AF0EC8A98FA9129EAA80339 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		5AF0ED6CF6A6D557518A4329 /* ViewWithSizeAttribute.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewWithSizeAttribute.mm; sourceTree = "<group>"; };
 		5AF0ED7F22DCA80D08C85D5C /* UIView+AutoLayoutDSLSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayoutDSLSugar.h"; sourceTree = "<group>"; };
 		5AF0EE13C8B9F040B0AB2989 /* HHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHAppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,9 @@
 				5AF0EC67584949E6D591E2BE /* AutoLayoutDSLTests */,
 				966C33BEBEDA40EAB623EAAB /* Pods-AutoLayoutDSLTests.xcconfig */,
 				B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */,
+				5AF0E1B02798DF6271A68377 /* README.md */,
+				5AF0EC8A98FA9129EAA80339 /* CHANGELOG.md */,
+				5AF0EC3A886D45897BECA6C2 /* AutoLayoutDSL.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -526,7 +532,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";
@@ -598,7 +604,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B983418033FD4DE5A6C7FEDE /* Pods.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AutoLayoutDSL/AutoLayoutDSL-Prefix.pch";
 				INFOPLIST_FILE = "AutoLayoutDSL/AutoLayoutDSL-Info.plist";
