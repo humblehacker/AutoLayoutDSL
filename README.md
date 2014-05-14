@@ -12,7 +12,7 @@ Constraint Expressions
 The standard syntax for defining layout constraints is verbose. For example, to specify the x offset of one button
 relative to another with a 5 point gap between them, one would write:
 
-````objc
+````objective-c
 self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button2
                                                       attribute:NSLayoutAttributeLeft
                                                       relatedBy:NSLayoutRelationEqual
@@ -24,13 +24,13 @@ self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button2
 
 With the layout DSL, this would simply be written as:
 
-````objc
+````objective-c
 View(_button2).left == View(_button1).right + 5.0;
 ````
 
 or more naturally as:
 
-````objc
+````objective-c
 View(_button1).right + 5.0 == View(_button2).left;
 ````
 
@@ -39,14 +39,14 @@ installed in the nearest common ancestor of `_button1` and `_button2`.
 
 ### Adding some sugar
 
-If you're willing to compile your code as objective-C++, you can access an even more consise constraint definition.
+If you're willing to compile your code as objective-C++, you can access an even more concise constraint definition.
 Just `#import "UIView+AutoLayoutDSLSugar.h"` and the constraint referred to above can be defined as:
 
-````objc
+````objective-c
 _button1.right + 5.0 == _button2.left;
 ````
 
-Now that's just about perfect.
+Now that's just about perfect.  The remaining examples will use this format.
 
 ### Constraint installation
 
@@ -55,23 +55,23 @@ common ancestor of the referenced views, but if you'd rather install the constra
 constraint expression in place of an actual `NSLayoutConstraint` object in a call to `addConstraint:`. The act of
 passing the expression to the method will prevent the constraint from being automatically installed.
 
-````objc
-[self.view addConstraint:View(_button1).left == View(_button2).right + 5.0];
+````objective-c
+[self.view addConstraint:_button1.left == _button2.right + 5.0];
 ````
 
 Basically, a constraint expression can be used anywhere an `NSLayoutConstraint` object is expected. For example,
 multiple constraints can be installed as follows:
 
-````objc
-[self.view addConstraints:@[View(_button1).right + 5.0 == View(_button2).left,
-                            View(_button2).right + 5.0 == View(_button3).left]];
+````objective-c
+[self.view addConstraints:@[_button1.right + 5.0 == _button2.left,
+                            _button2.right + 5.0 == _button3.left]];
 ````
 
 But why bother when this is so much more concise?
 
-````objc
-View(_button1).right + 5.0 == View(_button2).left;
-View(_button2).right + 5.0 == View(_button3).left;
+````objective-c
+_button1.right + 5.0 == _button2.left;
+_button2.right + 5.0 == _button3.left;
 ````
 
 ### Constraints referencing superviews
@@ -79,16 +79,16 @@ View(_button2).right + 5.0 == View(_button3).left;
 To specify a constraint on a view relative to its superview, just omit the `UIView*` parameter from the `View`
 specification:
 
-````objc
-View().left + 5.0 == View(_button1).left;
+````objective-c
+View().left + 5.0 == _button1.left;
 ````
 
 ### Priorities
 
 Priorities can be specified in a constraint expression by using the `^` operator, like so:
 
-````objc
-View(_button1).left == View(_button2).right + 5.0 ^ 999.0;
+````objective-c
+_button1.left == _button2.right + 5.0 ^ 999.0;
 ````
 
 ### Constraint Identification
@@ -100,26 +100,26 @@ them, when necessary.  There are a few ways to accomplish this.
 
 Just like adding priorities, identifiers can be added to a constraint expression by using the `^` operator, like so:
 
-````objc
-View(_image).width == View(_image).height * aspectRatio ^ @"maintainAspect";
+````objective-c
+_image.width == _image.height * aspectRatio ^ @"maintainAspect";
 ````
 
 #### Adding an identifier to a group of constraints
 
 You can group constraints by assigning them the same identifier:
 
-````objc
-View(_avatar).left == View().left + 5.0 ^ @"A group of constraints";
-View(_label).left == View(_avatar).right + StandardHorizontalGap ^ @"A group of constraints";
+````objective-c
+_avatar.left == View().left + 5.0 ^ @"A group of constraints";
+_label.left == _avatar.right + StandardHorizontalGap ^ @"A group of constraints";
 ````
 
-But a much cleaner way is by using the contraint grouping macros:
+But a much cleaner way is by using the constraint grouping macros:
 
-````objc
+````objective-c
 BeginConstraintGroup(@"A group of constraints")
 
-View(_avatar).left == View().left + 5.0;
-View(_label).left == View(_avatar).right + StandardHorizontalGap;
+_avatar.left == View().left + 5.0;
+_label.left == _avatar.right + StandardHorizontalGap;
 
 EndConstraintGroup;
 ````
@@ -128,19 +128,19 @@ EndConstraintGroup;
 
 To find a single constraint given its identifier:
 
-````objc
+````objective-c
 NSLayoutConstraint *constraint = [self.view constraintWithID:@"identifier"];
 ````
 
 To find all constraints with a given identifier:
 
-````objc
+````objective-c
 NSArray *constraint = [self.view constraintsWithID:@"identifier"];
 ````
 
 To find all constraints referencing a given view:
 
-````objc
+````objective-c
 NSArray *constraints = [self.view constraintsReferencingView:_button1];
 ````
 
@@ -148,7 +148,7 @@ NSArray *constraints = [self.view constraintsReferencingView:_button1];
 
 To remove a constraint, simply call `remove`
 
-````objc
+````objective-c
 NSLayoutConstraint *constraint = [self.view constraintWithID:@"identifier"];
 [constraint remove];
 ````
@@ -164,23 +164,23 @@ defining all of your constraints in a separate file using categories.
 
 ### Auto vs. manual constraint installation
 
-I used some unorthodox methods to acheive the results I was looking for.  The ability to have a constraint
-auto-install itself is acheived by installing the newly built `NSLayoutContraint` object from the destructor of the
+I used some unorthodox methods to achieve the results I was looking for.  The ability to have a constraint
+auto-install itself is achieved by installing the newly built `NSLayoutConstraint` object from the destructor of the
 internal `ConstraintBuilder` object.  The ability to use a constraint expression in place of an `NSLayoutConstraint`
-object is acheived through an overloaded cast operator on the internal `ConstraintBuilder` class.  In order to prevent
+object is achieved through an overloaded cast operator on the internal `ConstraintBuilder` class.  In order to prevent
 multiple constraint installs, any casting the `ConstraintBuilder` object will transfer ownership of the newly built
 `NSLayoutConstraint` object to the caller, so when the `ConstraintBuilder` object is destroyed, there is no
 `NSLayoutConstraint` object to install.  Unfortunately, this prevents directly obtaining a pointer to an
 _auto-installed_ constraint:
 
-````objc
+````objective-c
 // The following constraint has not been automatically installed
-NSLayoutConstraint *constraint = View(_avatar).left == View().left + 5.0;
+NSLayoutConstraint *constraint = _avatar.left == View().left + 5.0;
 ````
 
 This is a small price to pay, since the auto-install behavior can easily be invoked:
 
-````objc
+````objective-c
 [constraint install];
 ````
 
@@ -191,25 +191,25 @@ Regardless, this kind of _magic_ behavior will be disliked by some.
 Unfortunately, the compiler/static analyzer will most likely try to warn you that your free-standing constraint
 expressions are unused.
 
-![Unused result warning](./Assets/UnusedResultWarning.png)
+![Unused result warning](Assets/UnusedResultWarning.png)
 
 The only way to prevent this is to disable the warning.  You can wrap your constraint expressions like so:
 
-````objc
+````objective-c
 _Pragma( "clang diagnostic push" )
 _Pragma( "clang diagnostic ignored \"-Wunused-value\" " )
 
-View(_avatar).left == View().left + 5.0;
+_avatar.left == View().left + 5.0;
 
 _Pragma( "clang diagnostic pop")
 ````
 
 But that's pretty ugly.  To clean this up a bit, I've added a couple of macros to wrap constraints with:
 
-````objc
+````objective-c
 BeginConstraints
 
-View(_avatar).left == View().left + 5.0;
+_avatar.left == View().left + 5.0;
 
 EndConstraints;
 ````
@@ -239,7 +239,7 @@ my attention:
 Installation
 ------------
 
-AutoLayoutDSL is available with CocoaPods[http://cocoapods.org], to install
+AutoLayoutDSL is available with [CocoaPods](http://cocoapods.org), to install
 simply add the following line to your Podfile:
 
     pod AutoLayoutDSL
@@ -252,11 +252,11 @@ David Whetstone <david@humblehacker.com>
 
 The constraint expressions are my own design, but the ideas of constraint identification, grouping, and self-install
 are all thanks to [Erica Sadun](http://ericasadun.com) and her excellent book
-[iOS Auto-Layout Demystified](http://www.informit.com/store/ios-auto-layout-demystified-9780133440652).  Much of the
+[iOS Auto-Layout Demystified 2e](http://www.informit.com/store/ios-auto-layout-demystified-9780133750812).  Much of the
 code related to these features are massaged versions of the sample code included with that book, found
 [here](https://github.com/erica/Auto-Layout-Demystified).
 
 ## License
 
-AutoLayoutDSL is available under the MIT license. See the LICENSE file for more info.
+AutoLayoutDSL is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 

@@ -81,6 +81,7 @@
 		5AF0EA7E0540B3FE4BCE92FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5AF0EC320776F9854DA9BA16 /* ViewWithAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWithAttribute.h; sourceTree = "<group>"; };
 		5AF0EC3A886D45897BECA6C2 /* AutoLayoutDSL.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = AutoLayoutDSL.podspec; path = ../AutoLayoutDSL.podspec; sourceTree = "<group>"; };
+		5AF0EC541E945FFF4A6D99FA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		5AF0EC59982CD6C0373291C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5AF0EC5A16B4B8AB7DA6D0AD /* AutoLayoutDSLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AutoLayoutDSLTests-Info.plist"; sourceTree = "<group>"; };
 		5AF0EC5DB005CFC686829ED2 /* HHMainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHMainView.mm; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 				5AF0E1B02798DF6271A68377 /* README.md */,
 				5AF0EC8A98FA9129EAA80339 /* CHANGELOG.md */,
 				5AF0EC3A886D45897BECA6C2 /* AutoLayoutDSL.podspec */,
+				5AF0EC541E945FFF4A6D99FA /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
