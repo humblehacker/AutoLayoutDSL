@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "AutoLayoutDSL"
-  s.version      = "0.2.1"
+  s.version      = "1.0.0"
   s.summary      = "A straightforward DSL for specifying Cocoa Auto Layout constraints."
   s.description  = <<-DESC
                     AutoLayoutDSL allows you to turn this:
-                    
+
                         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button2
                                                                               attribute:NSLayoutAttributeLeft
                                                                               relatedBy:NSLayoutRelationEqual
@@ -12,10 +12,14 @@ Pod::Spec.new do |s|
                                                                               attribute:NSLayoutAttributeRight
                                                                              multiplier:1.0
                                                                                constant:5.0]];
-                    
+
                     into this:
-                    
-                        View(_button2).left() == View(_button1).right() + 5.0;
+
+                        View(_button2).left == View(_button1).right + 5.0;
+
+                    or even this:
+
+                        _button2.left == _button1.right + 5.0;
 
                     .
                    DESC

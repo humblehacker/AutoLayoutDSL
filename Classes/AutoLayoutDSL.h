@@ -10,6 +10,8 @@
 
 #import "ConstraintBuilder.h"
 #import "View.h"
+#import "ViewWithLocationAttribute.h"
+#import "ViewWithSizeAttribute.h"
 #import "NSObject+AutoLayoutDSL.h"
 #import "NSLayoutConstraint+AutoLayoutDSL.h"
 #import "UIView+AutoLayoutDSL.h"

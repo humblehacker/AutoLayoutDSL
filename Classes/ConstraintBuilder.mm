@@ -17,7 +17,7 @@
 namespace AutoLayoutDSL
 {
 
-ConstraintBuilder::ConstraintBuilder(View const & lhs, NSLayoutRelation relation, View const & rhs)
+ConstraintBuilder::ConstraintBuilder(ViewWithAttribute const &lhs, NSLayoutRelation relation, ViewWithAttribute const &rhs)
     : _relation(relation), _priority(UILayoutPriorityRequired)
 {
     NSCAssert(lhs._view || rhs._view, @"Invalid constraint specified: a UIView must be specified on at least one side of a constraint expression");

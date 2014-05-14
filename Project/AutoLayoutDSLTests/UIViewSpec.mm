@@ -8,6 +8,7 @@
 
 #import "Kiwi.h"
 #import "AutoLayoutDSL.h"
+#import "UIView+AutoLayoutDSLSugar.h"
 
 using namespace AutoLayoutDSL;
 
@@ -114,8 +115,8 @@ SPEC_BEGIN(UIViewSpec)
             it(@"should return the first matching constraint", ^
             {
                 UIView *v = [UIView new];
-                NSLayoutConstraint *c1 = View(v).height() == 50.0 ^ @"constraint";
-                NSLayoutConstraint *c2 = View(v).width() == 30.0 ^ @"constraint";
+                NSLayoutConstraint *c1 = View(v).height == 50.0 ^ @"constraint";
+                NSLayoutConstraint *c2 = View(v).width == 30.0 ^ @"constraint";
                 [c1 install];
                 [c2 install];
                 [[[v constraintWithID:@"constraint"] should] equal:c1];
@@ -130,7 +131,7 @@ SPEC_BEGIN(UIViewSpec)
             it(@"should return an empty array", ^
             {
                 UIView *v = [UIView new];
-                NSLayoutConstraint *c = View(v).height() == 50.0;
+                NSLayoutConstraint *c = View(v).height == 50.0;
                 [c install];
                 [[[v constraintsWithID:@"id"] should] equal:@[]];
             });
@@ -141,9 +142,9 @@ SPEC_BEGIN(UIViewSpec)
             it(@"should return the first matching constraint", ^
             {
                 UIView *v = [UIView new];
-                NSLayoutConstraint *c1 = View(v).height() == 50.0 ^ @"constraint";
-                NSLayoutConstraint *c2 = View(v).width() == 30.0 ^ @"constraint";
-                NSLayoutConstraint *c3 = View(v).minX() == View(v).maxX();
+                NSLayoutConstraint *c1 = View(v).height == 50.0 ^ @"constraint";
+                NSLayoutConstraint *c2 = View(v).width == 30.0 ^ @"constraint";
+                NSLayoutConstraint *c3 = View(v).left == View(v).right;
                 [c1 install];
                 [c2 install];
                 [c3 install];
@@ -165,9 +166,9 @@ SPEC_BEGIN(UIViewSpec)
                 UIView *v3 = [UIView new];
                 [v3 addSubview:v2];
                 [v2 addSubview:v1];
-                NSLayoutConstraint *c1 = View(v1).height() == 50.0 ^ @"constraint";
-                NSLayoutConstraint *c2 = View(v3).width() == 30.0 ^ @"constraint";
-                NSLayoutConstraint *c3 = View(v3).minX() == View(v2).maxX();
+                NSLayoutConstraint *c1 = View(v1).height == 50.0 ^ @"constraint";
+                NSLayoutConstraint *c2 = View(v3).width == 30.0 ^ @"constraint";
+                NSLayoutConstraint *c3 = View(v3).left == View(v2).right;
                 [c1 install];
                 [c2 install];
                 [c3 install];
@@ -180,5 +181,26 @@ SPEC_BEGIN(UIViewSpec)
             });
         });
     });
+
+    context(@"Specifying constraints with the UIView+AutoLayoutDSLSugar syntax", ^
+    {
+        it(@"should compile and run", ^
+        {
+            UIView *parent = [UIView new];
+            UIView *v1 = [UIView new];
+            UIView *v2 = [UIView new];
+
+            [parent addSubview:v1];
+            [parent addSubview:v2];
+
+            v1.left == v2.right;
+            v1.top == v2.bottom;
+            v1.width == v2.height;
+            v1.leading == v2.trailing;
+            v1.centerX == v2.centerY;
+            v1.baseline == v2.baseline;
+        });
+    });
+
 
     SPEC_END;
