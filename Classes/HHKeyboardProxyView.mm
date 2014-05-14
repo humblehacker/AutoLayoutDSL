@@ -5,8 +5,8 @@
 //  Copyright 2014 David Whetstone. All rights reserved.
 //
 
-#import <libextobjc/EXTScope.h>
 #import "AutoLayoutDSL.h"
+#import "UIView+AutoLayoutDSLSugar.h"
 #import "HHKeyboardProxyView.h"
 
 
@@ -65,7 +65,7 @@
     // Fetch keyboard frame
     CGFloat duration = [n.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     CGRect keyboardEndFrame = [n.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardEndFrame = [self.superview convertRect:keyboardEndFrame fromView:self.window];
+    keyboardEndFrame = [self.superview convertRect:keyboardEndFrame fromView:nil];
 
     // Adjust to window
     CGRect windowFrame = [self.superview convertRect:self.window.frame fromView:self.window];
@@ -87,10 +87,14 @@
 
     BeginConstraints
 
-        View(self).minX() == View().minX();
-        View(self).width() == View().width();
-        View(self).maxY() == View().maxY();
-        self.heightConstraint = View(self).height() == 0.0;
+        self.left == View().left;
+        self.width == View().width;
+        self.bottom == View().bottom;
+
+        // Need to keep heightConstraint so we can change the constant later.
+        self.heightConstraint = self.height == 0.0;
+
+        // Constraint was not auto-installed, so we install it manually.
         [self.heightConstraint install];
 
     EndConstraints

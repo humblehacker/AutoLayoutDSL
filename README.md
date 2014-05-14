@@ -25,39 +25,53 @@ self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button2
 With the layout DSL, this would simply be written as:
 
 ````objc
-View(_button2).left() == View(_button1).right() + 5.0;
+View(_button2).left == View(_button1).right + 5.0;
 ````
 
 or more naturally as:
 
 ````objc
-View(_button1).right() + 5.0 == View(_button2).left();
+View(_button1).right + 5.0 == View(_button2).left;
 ````
 
 That's it.  When this expression is executed, the `NSLayoutConstraint` object will be created and automatically
 installed in the nearest common ancestor of `_button1` and `_button2`.
 
-If you'd rather install the constraint yourself, you can simply use a constraint expression in place of an actual
-`NSLayoutConstraint` object in a call to `addConstraint:`. The act of passing the expression to the method will
-prevent the constraint from being automatically installed.
+### Adding some sugar
+
+If you're willing to compile your code as objective-C++, you can access an even more consise constraint definition.
+Just `#import "UIView+AutoLayoutDSLSugar.h"` and the constraint referred to above can be defined as:
 
 ````objc
-[self.view addConstraint:View(_button1).left() == View(_button2).right() + 5.0];
+_button1.right + 5.0 == _button2.left;
+````
+
+Now that's just about perfect.
+
+### Constraint installation
+
+As mentioned before, just declaring a constraint expression is sufficient to install that constraint in the nearest
+common ancestor of the referenced views, but if you'd rather install the constraint yourself, you can simply use a
+constraint expression in place of an actual `NSLayoutConstraint` object in a call to `addConstraint:`. The act of
+passing the expression to the method will prevent the constraint from being automatically installed.
+
+````objc
+[self.view addConstraint:View(_button1).left == View(_button2).right + 5.0];
 ````
 
 Basically, a constraint expression can be used anywhere an `NSLayoutConstraint` object is expected. For example,
 multiple constraints can be installed as follows:
 
 ````objc
-[self.view addConstraints:@[View(_button1).right() + 5.0 == View(_button2).left(),
-                            View(_button2).right() + 5.0 == View(_button3).left()]];
+[self.view addConstraints:@[View(_button1).right + 5.0 == View(_button2).left,
+                            View(_button2).right + 5.0 == View(_button3).left]];
 ````
 
 But why bother when this is so much more concise?
 
 ````objc
-View(_button1).right() + 5.0 == View(_button2).left();
-View(_button2).right() + 5.0 == View(_button3).left();
+View(_button1).right + 5.0 == View(_button2).left;
+View(_button2).right + 5.0 == View(_button3).left;
 ````
 
 ### Constraints referencing superviews
@@ -66,7 +80,7 @@ To specify a constraint on a view relative to its superview, just omit the `UIVi
 specification:
 
 ````objc
-View().left() + 5.0 == View(_button1).left();
+View().left + 5.0 == View(_button1).left;
 ````
 
 ### Priorities
@@ -74,7 +88,7 @@ View().left() + 5.0 == View(_button1).left();
 Priorities can be specified in a constraint expression by using the `^` operator, like so:
 
 ````objc
-View(_button1).left() == View(_button2).right() + 5.0 ^ 999.0;
+View(_button1).left == View(_button2).right + 5.0 ^ 999.0;
 ````
 
 ### Constraint Identification
@@ -87,7 +101,7 @@ them, when necessary.  There are a few ways to accomplish this.
 Just like adding priorities, identifiers can be added to a constraint expression by using the `^` operator, like so:
 
 ````objc
-View(_image).width() == View(_image).height() * aspectRatio ^ @"maintainAspect";
+View(_image).width == View(_image).height * aspectRatio ^ @"maintainAspect";
 ````
 
 #### Adding an identifier to a group of constraints
@@ -95,8 +109,8 @@ View(_image).width() == View(_image).height() * aspectRatio ^ @"maintainAspect";
 You can group constraints by assigning them the same identifier:
 
 ````objc
-View(_avatar).minX() == View().minX() + 5.0 ^ @"A group of constraints";
-View(_label).minX() == View(_avatar).maxX() + StandardHorizontalGap ^ @"A group of constraints";
+View(_avatar).left == View().left + 5.0 ^ @"A group of constraints";
+View(_label).left == View(_avatar).right + StandardHorizontalGap ^ @"A group of constraints";
 ````
 
 But a much cleaner way is by using the contraint grouping macros:
@@ -104,8 +118,8 @@ But a much cleaner way is by using the contraint grouping macros:
 ````objc
 BeginConstraintGroup(@"A group of constraints")
 
-View(_avatar).minX() == View().minX() + 5.0;
-View(_label).minX() == View(_avatar).maxX() + StandardHorizontalGap;
+View(_avatar).left == View().left + 5.0;
+View(_label).left == View(_avatar).right + StandardHorizontalGap;
 
 EndConstraintGroup;
 ````
@@ -156,12 +170,12 @@ internal `ConstraintBuilder` object.  The ability to use a constraint expression
 object is acheived through an overloaded cast operator on the internal `ConstraintBuilder` class.  In order to prevent
 multiple constraint installs, any casting the `ConstraintBuilder` object will transfer ownership of the newly built
 `NSLayoutConstraint` object to the caller, so when the `ConstraintBuilder` object is destroyed, there is no
-`NSLayoutConstraint` object to install.  Unfortunately, this prevents directly obtaining a pointer to an auto-installed
-constraint:
+`NSLayoutConstraint` object to install.  Unfortunately, this prevents directly obtaining a pointer to an
+_auto-installed_ constraint:
 
 ````objc
 // The following constraint has not been automatically installed
-NSLayoutConstraint *constraint = View(_avatar).minX() == View().minX() + 5.0;
+NSLayoutConstraint *constraint = View(_avatar).left == View().left + 5.0;
 ````
 
 This is a small price to pay, since the auto-install behavior can easily be invoked:
@@ -185,17 +199,17 @@ The only way to prevent this is to disable the warning.  You can wrap your const
 _Pragma( "clang diagnostic push" )
 _Pragma( "clang diagnostic ignored \"-Wunused-value\" " )
 
-View(_avatar).minX() == View().minX() + 5.0;
+View(_avatar).left == View().left + 5.0;
 
 _Pragma( "clang diagnostic pop")
 ````
 
-But that is pretty ugly.  To clean this up a bit, I've added a couple of macros to wrap constraints with:
+But that's pretty ugly.  To clean this up a bit, I've added a couple of macros to wrap constraints with:
 
 ````objc
 BeginConstraints
 
-View(_avatar).minX() == View().minX() + 5.0;
+View(_avatar).left == View().left + 5.0;
 
 EndConstraints;
 ````

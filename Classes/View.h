@@ -9,6 +9,8 @@
 #define __AUTOLAYOUTDSL_VIEW_H__
 
 #import <UIKit/UIKit.h>
+#import "ViewWithLocationAttribute.h"
+#import "ViewWithSizeAttribute.h"
 
 namespace AutoLayoutDSL
 {
@@ -24,44 +26,19 @@ public:
     View(View const &viewHolder, UIView *view);
     void swap(View &view) throw();
 
-    ConstraintBuilder operator == (const View &);
-    ConstraintBuilder operator == (CGFloat rhs);
+    ViewWithLocationAttribute left;
+    ViewWithLocationAttribute centerX;
+    ViewWithLocationAttribute right;
+    ViewWithLocationAttribute leading;
+    ViewWithLocationAttribute trailing;
 
-    ConstraintBuilder operator <= (const View &);
-    ConstraintBuilder operator <= (CGFloat rhs);
+    ViewWithLocationAttribute top;
+    ViewWithLocationAttribute centerY;
+    ViewWithLocationAttribute bottom;
+    ViewWithLocationAttribute baseline;
 
-    ConstraintBuilder operator >= (const View &);
-    ConstraintBuilder operator >= (CGFloat rhs);
-
-    View & operator *(CGFloat value);
-    friend View & operator *(CGFloat value, View &rhs);
-
-    View & operator /(CGFloat value);
-
-    View & operator +(CGFloat value);
-    friend View & operator +(CGFloat value, View &rhs);
-
-    View & operator -(CGFloat value);
-    friend View & operator -(CGFloat value, View &rhs);
-
-    View & left();
-    View & centerX();
-    View & right();
-    View & minX();
-    View & midX();
-    View & maxX();
-    View & width();
-    View & leading();
-    View & trailing();
-
-    View & top();
-    View & centerY();
-    View & bottom();
-    View & minY();
-    View & midY();
-    View & maxY();
-    View & height();
-    View & baseline();
+    ViewWithSizeAttribute width;
+    ViewWithSizeAttribute height;
 
     friend class ConstraintBuilder;
 
@@ -70,16 +47,10 @@ private:
     // Must use operator ==() instead.
     View & operator =(View rhs);
 
+    void setupAttributes();
+
 private:
     __strong UIView *_view;
-    NSLayoutAttribute _attribute;
-    CGFloat _scale;
-    CGFloat _offset;
-    NSString *str() const;
-    NSString *offsetStr() const;
-    NSString *scaleStr() const;
-    NSString *attributeStr() const;
-    NSString *viewStr() const;
 };
 
 } // namespace AutoLayoutDSL
